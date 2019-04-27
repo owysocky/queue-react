@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 function ConfirmationQuestions(props){
   return (
-    <div>
+    <div className="conf">
     <style>{`
-      div{
+      .conf{
         background-color: #9fbff2;
+        margin: 10px;
         padding: 10px;
       }
       h3{
