@@ -2,6 +2,15 @@ import React from 'react';
 import buttonImage from '../assets/images/button.png';
 
 function NewTicketForm(){
+  let _names = null;
+  let _location = null;
+  let _issue = null;
+  function handleNewTicketFormSubmission(event){
+    event.preventDefault();
+    _names.value = '';
+    _location.value = '';
+    _issue.value = '';
+  }
   return (
     <div>
       <hr/>
@@ -45,26 +54,31 @@ function NewTicketForm(){
         }
       `}</style>
 
-      <form>
+      <form onSubmit={handleNewTicketFormSubmission}>
         <h3>Create Ticket</h3>
         <input
           type='text'
           id='names'
-          placeholder='Pair Names'/>
+          placeholder='Pair Names'
+          ref={(input) => {_names = input;}}/>
           <br/>
         <input
           type='text'
           id='location'
-          placeholder='Location'/>
+          placeholder='Location'
+          ref={(input) => {_location = input;}}/>
           <br/>
         <textarea
           id='issue'
-          placeholder='Describe your issue.'/>
+          placeholder='Describe your issue.'
+          ref={(textarea) => {_issue = textarea;}}/>
           <br/>
         <button type='submit'><img src = {buttonImage}/></button>
       </form>
     </div>
   );
+  
+
 }
 
 export default NewTicketForm;
