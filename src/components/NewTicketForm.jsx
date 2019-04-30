@@ -2,21 +2,23 @@ import React from 'react';
 import buttonImage from '../assets/images/button.png';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
+import Moment from 'moment';
 
-function NewTicketForm(props){
+
+function NewTicketForm(props) {
   let _names = null;
   let _location = null;
   let _issue = null;
-  function handleNewTicketFormSubmission(event){
+  function handleNewTicketFormSubmission(event) {
     event.preventDefault();
-    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
+    props.onNewTicketCreation({ names: _names.value, location: _location.value, issue: _issue.value, id: v4(), timeOpen: new Moment() });
     _names.value = '';
     _location.value = '';
     _issue.value = '';
   }
   return (
     <div>
-      <hr/>
+      <hr />
       <style jsx>{`
         form{
           background-color: #9fbff2;
@@ -63,27 +65,27 @@ function NewTicketForm(props){
           type='text'
           id='names'
           placeholder='Pair Names'
-          ref={(input) => {_names = input;}}/>
-          <br/>
+          ref={(input) => { _names = input; }} />
+        <br />
         <input
           type='text'
           id='location'
           placeholder='Location'
-          ref={(input) => {_location = input;}}/>
-          <br/>
+          ref={(input) => { _location = input; }} />
+        <br />
         <textarea
           id='issue'
           placeholder='Describe your issue.'
-          ref={(textarea) => {_issue = textarea;}}/>
-          <br/>
-        <button type='submit'><img src = {buttonImage}/></button>
+          ref={(textarea) => { _issue = textarea; }} />
+        <br />
+        <button type='submit'><img src={buttonImage} /></button>
       </form>
     </div>
   );
 }
 
 NewTicketForm.propTypes = {
-  onNewTicketCreation: PropTypes.func    
+  onNewTicketCreation: PropTypes.func
 };
 
 
