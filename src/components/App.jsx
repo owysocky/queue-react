@@ -76,6 +76,7 @@ class App extends React.Component {
                 ticketList={this.state.masterTicketList}
                 currentRouterPath={props.location.pathname}
                 onTicketSelection={this.handleChangingSelectedTicket}
+                selectedTicket={this.state.selectedTicket}
               />
             )}
           />
