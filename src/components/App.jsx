@@ -6,6 +6,7 @@ import Error404 from "./Error404";
 import { Switch, Route } from "react-router-dom";
 import Moment from "moment";
 import Admin from "./Admin";
+import { v4 } from 'uuid';
 
 class App extends React.Component {
   constructor(props) {
@@ -38,8 +39,9 @@ class App extends React.Component {
   }
 
   handleAddingNewTicketToList(newTicket) {
-    var newMasterTicketList = Object.assign({}, this.state.masterTicketList, {[newTicket.id]: newTicket});
-    newMasterTicketList[newTicket.id].formattedWaitTime = newMasterTicketList[newTicket.id].timeOpen.fromNow(true);
+    var newTicketId = v4();
+    var newMasterTicketList = Object.assign({}, this.state.masterTicketList, {[newTicketId]: newTicket});
+    newMasterTicketList[newTicketId].formattedWaitTime = newMasterTicketList[newTicketId].timeOpen.fromNow(true);
     this.setState({ masterTicketList: newMasterTicketList });
   }
 
