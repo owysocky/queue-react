@@ -30,7 +30,6 @@ class App extends React.Component {
   }
 
   updateTicketElapsedWaitTime() {
-    console.log("check");
     let newMasterTicketList = this.state.masterTicketList.slice();
     newMasterTicketList.forEach(
       ticket => (ticket.formattedWaitTime = ticket.timeOpen.fromNow(true))
