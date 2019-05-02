@@ -65,7 +65,10 @@ class App extends React.Component {
               />
             )}
           />
-          <Route path="/admin" component={Admin} />
+          <Route
+            path="/admin"
+            render={() => <Admin ticketList={this.state.masterTicketList} />}
+          />
           <Route component={Error404} />
         </Switch>
       </div>
