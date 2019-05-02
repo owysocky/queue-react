@@ -14,10 +14,8 @@ class App extends React.Component {
       masterTicketList: [],
       selectedTicket: null
     };
-    this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(
-      this);
-    this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(
-        this);
+    this.handleAddingNewTicketToList = this.handleAddingNewTicketToList.bind(this);
+    this.handleChangingSelectedTicket = this.handleChangingSelectedTicket.bind(this);
   }
 
   componentDidMount() {
@@ -77,6 +75,7 @@ class App extends React.Component {
               <Admin
                 ticketList={this.state.masterTicketList}
                 currentRouterPath={props.location.pathname}
+                onTicketSelection={this.handleChangingSelectedTicket}
               />
             )}
           />
