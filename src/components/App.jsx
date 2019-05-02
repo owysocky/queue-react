@@ -67,7 +67,12 @@ class App extends React.Component {
           />
           <Route
             path="/admin"
-            render={() => <Admin ticketList={this.state.masterTicketList} />}
+            render={props => (
+              <Admin
+                ticketList={this.state.masterTicketList}
+                currentRouterPath={props.location.pathname}
+              />
+            )}
           />
           <Route component={Error404} />
         </Switch>
