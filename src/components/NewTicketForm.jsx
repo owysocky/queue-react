@@ -2,24 +2,38 @@ import React from "react";
 import buttonImage from "../assets/images/button.png";
 import PropTypes from "prop-types";
 import Moment from "moment";
+import { connect } from "react-redux";
 
 function NewTicketForm(props) {
-  console.log(props);
   let _names = null;
   let _location = null;
   let _issue = null;
+
   function handleNewTicketFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
+    const action = {
+      type: "ADD_TICKET",
+      id: null,
+      names: _names.value,
+      location: _location.value,
+      issue: _issue.value,
+      timeOpen: new Moment()
+    };
+    dispatch(action);
+
     props.onNewTicketCreation({
       names: _names.value,
       location: _location.value,
       issue: _issue.value,
+      id: v4(),
       timeOpen: new Moment()
     });
     _names.value = "";
     _location.value = "";
     _issue.value = "";
   }
+
   return (
     <div>
       <hr />
@@ -100,4 +114,4 @@ NewTicketForm.propTypes = {
   onNewTicketCreation: PropTypes.func
 };
 
-export default NewTicketForm;
+export default connect()(NewTicketForm);
