@@ -1,4 +1,5 @@
 import ticketListReducer from "./../src/reducers/ticket-list-reducer";
+import Moment from "moment";
 
 describe("ticketListReducer", () => {
   let action;
@@ -22,7 +23,8 @@ describe("ticketListReducer", () => {
       location: location,
       issue: issue,
       timeOpen: timeOpen,
-      id: id
+      id: id,
+      formattedWaitTime: new Moment().fromNow(true)
     };
     expect(ticketListReducer({}, action)).toEqual({
       [id]: {
@@ -30,7 +32,27 @@ describe("ticketListReducer", () => {
         location: location,
         issue: issue,
         timeOpen: timeOpen,
-        id: id
+        id: id,
+        formattedWaitTime: "a few seconds"
+      }
+    });
+  });
+
+  test("Should add freshly-calculated Moment-formatted wait time to ticket entry", () => {
+    const { names, location, issue, timeOpen, id } = sampleTicketData;
+    action = {
+      type: "UPDATE_TIME",
+      formattedWaitTime: "4 minutes",
+      id: id
+    };
+    expect(ticketListReducer({ [id]: sampleTicketData }, action)).toEqual({
+      [id]: {
+        names: names,
+        location: location,
+        issue: issue,
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: "4 minutes"
       }
     });
   });
